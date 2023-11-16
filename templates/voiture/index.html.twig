@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture index{% endblock %}
+
+{% block body %}
+    <h1>Voiture index</h1>
+      {{ form_start(form) }}
+      Marque:
+      {{ form_widget(form.marque) }}
+    {{ form_widget(form.submit) }}
+    <a href = {{ path('app_voiture_index') }} type ="button" >Annuler </a>
+      {{ form_end(form) }}
+
+    <div id="presidents">Loading...</div>
+
+    <a href="{{ path('app_voiture_new') }}">Create new</a>
+
+{% endblock %}
+
+{%  block javascripts %}
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+        <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+      
+  <script>
+        $(function() {
+            $('#presidents').initDataTables({{ datatable_settings(datatable) }});
+        });
+        </script>
+        {% endblock %}
